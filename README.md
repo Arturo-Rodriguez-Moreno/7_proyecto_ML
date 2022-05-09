@@ -26,7 +26,8 @@ A nuestra disposción había 2 archivos csv, uno para el entrenamiento de los mo
 
 ## Entregables:
 
-- `LinearRegresion.ipynb` 
+- `LinearRegresion.ipynb`
+- `Lasso.ipynb` 
 - `RandomForestRegressor.ipynb`
 - `GradientBoostingRegressor.ipynb`
 - `H2O.ipynb`
@@ -55,9 +56,10 @@ El 20% restante lo uso para evualuar cado uno de los modelos utilizando principa
 
 ## Entrenar y testear modelos:
 
-Me quedo finalmente con 4 modelo:
+Me quedo finalmente con 5 modelo:
 
 - Linear Regresion
+- Lasso
 - Random Forest Regressor
 - Gradient Boosting Regressor
 - H2O
@@ -66,7 +68,7 @@ Le aplico técnicas de ajuste de hyperparametros (Random Grid Searching, HyperOp
 
 ## Entrenar y testear modelos:
 
-Por último utilizo el archivo de test para realizar las predicciones con los 4 modelos y presentar los resultados para la competición
+Por último utilizo el archivo de test para realizar las predicciones con los 5 modelos y presentar los resultados para la competición
 
 
 ## Enlaces y Recursos:
