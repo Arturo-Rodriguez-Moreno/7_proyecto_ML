@@ -4,4 +4,3 @@
 .vscode
 .env
 **/*.csv
-**/*.ipynb

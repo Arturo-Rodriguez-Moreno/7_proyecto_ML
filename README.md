@@ -1,86 +1,68 @@
-![Player_3pts.png](images/Player_3pts.png)
+![airbnb-madrid.jpg](images/airbnb-madrid.jpg)
 
 
-# Proyecto ETL y Visualización
+# Competición de Machine Learning
 ## Introducción:
 
 
-En el siguinte proyecto se me ha encargado como objetivo extraer datos de 3 fuentes diferentes y utilizando varias tecnicas de extranción, para a posteriori tranformarlos, cargarlos a una base de datos Y por último realizar una análisis con su correspondiente visualización.
+Con el fin de poner practica los conocimientos adquiridos en machine learning desde Ironhack, organizaron en Kaggle una competición entre todos los alumnos, para ver cual de nosotros predecía mejor el precio de un alojamiento de la plataforma Airbnb en Amsterdam.
 
-El tema que he escogido es la NBA, más en particular estadísticas completas de los partidos desde el año 2004 hasta el 2020. Para ello utilizaré diferentes fuentes, en una de ellas descargaré directamente archivos en csv, otra será una API y por último scrapearé una web.
-
-En cuanto al análisis y visualización utilizaré Tableau con el que realizaré varios dashboards en los que se muestren diferentes perspectivas de los datos.
+A nuestra disposción había 2 archivos csv, uno para el entrenamiento de los modelos con caracteristicas y precios de varios alojamientos y otro solo con características que sería utilizado para predecir el precio y entregar para clasificar en la competición.
 
 
 
 ## Fuentes de los datos:
 
- - https://www.kaggle.com/datasets/nathanlauga/nba-games
- - https://www.balldontlie.io/#get-all-players
- - https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population
- - https://espndeportes.espn.com/basquetbol/
- 
+ - https://www.kaggle.com/competitions/ironhack-airbnb-datamad0322
+
 
 ## Objetivos:
 
-- Recopilar datos de 3 fuentes y 3 técnicas de extracción. 
-- Explorar, limpiar y transformar los datos.
-- Diseñar, crear y alimentar la base de datos.
-- Analizar y visualizar.
+- Limpiar y arreglar datos. 
+- Entrenar y testear modelos.
+- Evaluar y ajustar modelos.
+- Predecir y presentar resultados.
 
 
 ## Entregables:
 
-- `nba_stats.sql` 
-- `nba_stats.twb`
-
-
-## Extracción de datos:
-
-Como primera fuente de datos utilizo la web de kaggle, en la que me descargo una serie de archivos de csv que serán el punto de partida de mi base de datos, entre ellos se encuentran estadisticas de partidos por equipos e individualizada por jugadores.
-
-Otra de las fuentes de datos es la api de balldontlie, en la que extraeré ayudandome de la biblioteca request de datos de los jugadores como posición, estatura y peso.
-
-Por último en wikipedia mediante scrapeo a través de Selenium me haré con una tabla de información sobre las ciudades de Estados Unidos.
-        
+- `LinearRegresion.ipynb` 
+- `RandomForestRegressor.ipynb`
+- `GradientBoostingRegressor.ipynb`
+- `H2O.ipynb`
 
 
 ## Exploración, limpieza y transformación:
 
-Comienzo importando todos los csv a un jupyter notebook y los guardo como dataframes de pandas para revisar los datos. Hago lo mismo con los json procedentes de la api y con la tabla extraida del scrapeo 
+Antes de nada importo lo csv y realizo una EDA (análisis exploratorio de los datos), continuo limpiando valores nulos, constantes, outliers, eliminando columnas con poca coorrelación con el precio, limpiando y arreglando las strings 
 
-Continuo limpiando y gestionando los datos nulos, modificando y cambiando el tipo de datos y uniendo alguna de tablas.
-
-
-
-## Diseño y creación de la base de datos:
+Realizo transformaciones en los valores númericos(normalizaciones, compresiones...) y los categoricos los convierto en numéricos (one-hot-encoding, label encoding). Para todas estas modificaciones me creo un archivo con funciones para ir llamandolas en  función del modelo.
 
 
-Primero me diseño la estructura de la base de datos en un papel y cuando tengo claro cuales son las primary y foreign keys de cada tabla me dispongo a generarla en mySQL
 
-Para ello utilizo otra vez jupyter nootebook y me ayudo de mysql-conector para realizarlo de forma automatizada. Primero creo la base de dato, luego las tablas con sus relaciones y por último le inserto los datos.
+## Entrenar y testear modelos:
 
-## Analizar y visualizar:
+ 
+Una vez los datos están arreglados, divido mi paquete de datos en 80% para entrenar y 20% para testear y hago un primer entreno en bucle de listados de modelos(LinealRegression, SupportVectorRegressor, RandomForest, Boosting, H2O).
 
-Como seguidor de la NBA he visto la evolución de la forma de jugar en las dos últimas decadas, en la que aparentemente cada vez se tira mas de 3 puntos y menos de 2 puntos. Con este análisis, comprobares si los datos contrastan mi percepción.
+El 20% restante lo uso para evualuar cado uno de los modelos utilizando principalmente dos métricas (RMSE y R2) y así poder determina cual de los modelos tiene mejor rendimiento.
 
-Para ello lo primero que compruebo es la evolución en el tiempo del número de tiros de 3 y 2 puntos en toda la liga y se aprecia lo siguiente:
 
-- La tendencia del tiro de 3 puntos va en aumento desde el 2004, se hace mucho mas significativa con los años a partir de 2010
-- La tendencia del tiro de 2 puntos se mantiene estable desde el 2004 y empieza a decrecer paulatinamente a partir del 2010.
 
-Esto me lleva a pensar que efectivamente desde el 2004 cada vez se recurre al tiro de 3 y desde 2010 algunos equipos basan su juego en esta táctica. Por lo que el siguiente paso es estudiar la tedencia indivial de los equipos que mas tiran y para identificar a los mas influyentes:
+## Entrenar y testear modelos:
 
-- Houston Rocket
-- Golden State Warriors
+Me quedo finalmente con 4 modelo:
 
-Realizo el mismo ejercicio para determinar los jugadores mas influyentes:
+- Linear Regresion
+- Random Forest Regressor
+- Gradient Boosting Regressor
+- H2O
 
-- Stephen Curry
-- James Harden 
-- Klay Thompson
-- Damian Lillard
+Le aplico técnicas de ajuste de hyperparametros (Random Grid Searching, HyperOpt...) para afinar al máximo las predicciones.
 
+## Entrenar y testear modelos:
+
+Por último utilizo el archivo de test para realizar las predicciones con los 4 modelos y presentar los resultados para la competición
 
 
 ## Enlaces y Recursos:
@@ -89,22 +71,15 @@ Realizo el mismo ejercicio para determinar los jugadores mas influyentes:
 - <https://numpy.org/doc/1.18/>
 - <https://pandas.pydata.org/>
 - https://docs.python.org/3/library/functions.html
-- https://plotly.com/python/
 - https://matplotlib.org/
 - https://seaborn.pydata.org/
 - https://pandas.pydata.org/docs/
 - https://docs.python-requests.org/en/latest/
-- https://dev.mysql.com/doc/connector-python/en/
-- https://selenium-python.readthedocs.io/
-- https://www.tableau.com/es-es
+- https://scikit-learn.org/stable/#
+- https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science.html
 
 
 
-
-
-```python
-
-```
 
 
 
