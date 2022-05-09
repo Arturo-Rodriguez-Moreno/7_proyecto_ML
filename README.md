@@ -30,6 +30,10 @@ A nuestra disposción había 2 archivos csv, uno para el entrenamiento de los mo
 - `RandomForestRegressor.ipynb`
 - `GradientBoostingRegressor.ipynb`
 - `H2O.ipynb`
+- `testing_models.ipynb`
+- `my_functions.ipynb`
+
+
 
 
 ## Exploración, limpieza y transformación:
